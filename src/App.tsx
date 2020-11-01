@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import Grid from './components/Grid';
-import { toggleCell } from './utils';
-
-const emptyGrid: boolean[][] = Array(10).fill(Array(10).fill(false));
+import { emptyGrid, toggleCell } from './utils';
 
 const App = () => {
   const [tick, setTick] = useState(0);
