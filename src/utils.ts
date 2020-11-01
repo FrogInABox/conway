@@ -15,3 +15,13 @@ export const toggleCell = (grid: boolean[][], y: number, x: number) => {
     newGrid[y][x] = !grid[y][x];
   });
 };
+
+// determine if a cell needs to be toggled
+export const cellNeedsToggle = (alive: boolean, livingNeighbours: number) => {
+  if (alive && (livingNeighbours < 2 || livingNeighbours > 3)) {
+    return true;
+  } else if (!alive && livingNeighbours === 3) {
+    return true;
+  }
+  return false;
+};
