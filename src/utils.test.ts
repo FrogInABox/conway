@@ -4,6 +4,7 @@ import {
   toggleCell,
   cellNeedsToggle,
   getLivingNeighbourCount,
+  updateGrid,
 } from './utils';
 import { GRID_ROWS, GRID_COLS } from './config';
 
@@ -109,5 +110,24 @@ describe('getLivingNeighbourCount', () => {
     expect(
       getLivingNeighbourCount(edges, GRID_ROWS - 1, GRID_COLS - 1),
     ).toEqual(2); // SW
+  });
+});
+
+describe('updateGrid', () => {
+  it('does nothing if no living cells', () => {
+    expect(updateGrid(emptyGrid)).toEqual(emptyGrid);
+  });
+  it('correctly updates a simple pattern', () => {
+    const before = produce(emptyGrid, (grid) => {
+      grid[5][5] = true;
+      grid[6][5] = true;
+      grid[7][5] = true;
+    });
+    const after = produce(emptyGrid, (grid) => {
+      grid[6][5] = true;
+      grid[6][4] = true;
+      grid[6][6] = true;
+    });
+    expect(updateGrid(before)).toEqual(after);
   });
 });

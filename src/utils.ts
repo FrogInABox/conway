@@ -45,3 +45,18 @@ export const getLivingNeighbourCount = (
   // filter to living neighbours and return count
   return neighbours.filter((n) => n).length;
 };
+
+export const updateGrid = (grid: boolean[][]) => {
+  // update the grid immutably with immer
+  return produce(grid, (newGrid) => {
+    // loop through all cells in the grid
+    for (let y = 0; y < GRID_ROWS; y++) {
+      for (let x = 0; x < GRID_COLS; x++) {
+        // toggle and cells that need to be toggled
+        if (cellNeedsToggle(grid[y][x], getLivingNeighbourCount(grid, y, x))) {
+          newGrid[y][x] = !grid[y][x];
+        }
+      }
+    }
+  });
+};
