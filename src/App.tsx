@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Grid from './components/Grid';
-import { emptyGrid, toggleCell } from './utils';
+import { TICK_INTERVAL } from './config';
+import { emptyGrid, toggleCell, updateGrid } from './utils';
 
 const App = () => {
   const [tick, setTick] = useState(0);
@@ -10,6 +11,16 @@ const App = () => {
   const onToggleCell = useCallback((y, x) => {
     setGrid((g) => toggleCell(g, y, x));
   }, []);
+
+  useEffect(() => {
+    if (started) {
+      const interval = setInterval(() => {
+        setGrid((g) => updateGrid(g));
+        setTick((t) => t + 1);
+      }, TICK_INTERVAL);
+      return () => clearInterval(interval);
+    }
+  }, [started]);
 
   return (
     <main>
