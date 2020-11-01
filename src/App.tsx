@@ -5,6 +5,7 @@ import { emptyGrid, toggleCell } from './utils';
 const App = () => {
   const [tick, setTick] = useState(0);
   const [grid, setGrid] = useState(emptyGrid);
+  const [started, setStarted] = useState(false);
 
   const onToggleCell = useCallback((y, x) => {
     setGrid((g) => toggleCell(g, y, x));
@@ -13,10 +14,12 @@ const App = () => {
   return (
     <main>
       <h1>Conway's Game of Life</h1>
-      <Grid grid={grid} onToggleCell={onToggleCell} />
+      <Grid grid={grid} onToggleCell={!started ? onToggleCell : undefined} />
       <br />
       <div>
-        <button>Start</button>
+        <button onClick={() => setStarted(!started)}>
+          {started ? 'Stop' : 'Start'}
+        </button>
         <span>Tick: {tick}</span>
       </div>
     </main>
