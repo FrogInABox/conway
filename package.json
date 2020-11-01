@@ -2,14 +2,13 @@
   "name": "conway",
   "version": "0.1.0",
   "description": "React implementation of Conway's Game of Life",
-  "browser": "src/index.html",
   "repository": "git@github.com:FrogInABox/conway.git",
   "author": "Kai Leddy <kai.leddy@azuri-technologies.com>",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "start": "parcel serve src/index.html",
-    "build": "parcel build src/index.html --dist-dir dist",
+    "build": "parcel build src/index.html",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write 'src/**'"
   },
