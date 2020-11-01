@@ -18,8 +18,9 @@ jobs:
       - run: yarn lint
       - run: yarn tsc
       - run: yarn build
+      - run: ls dist
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: dist
