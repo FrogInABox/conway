@@ -25,3 +25,23 @@ export const cellNeedsToggle = (alive: boolean, livingNeighbours: number) => {
   }
   return false;
 };
+
+export const getLivingNeighbourCount = (
+  grid: boolean[][],
+  y: number,
+  x: number,
+) => {
+  // get all the neighbours, whilst testing for edges
+  const neighbours = [
+    y > 0 ? grid[y - 1][x] : null, // N
+    x > 0 ? grid[y][x - 1] : null, // W
+    y < GRID_ROWS - 1 ? grid[y + 1][x] : null, // S
+    x < GRID_COLS - 1 ? grid[y][x + 1] : null, // E
+    y > 0 && x > 0 ? grid[y - 1][x - 1] : null, // NW
+    y > 0 && x < GRID_COLS - 1 ? grid[y - 1][x + 1] : null, // NE
+    x > 0 && y < GRID_ROWS - 1 ? grid[y + 1][x - 1] : null, // SW
+    x < GRID_COLS - 1 && y < GRID_ROWS - 1 ? grid[y + 1][x + 1] : null, // SE
+  ];
+  // filter to living neighbours and return count
+  return neighbours.filter((n) => n).length;
+};
