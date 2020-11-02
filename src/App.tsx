@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import Grid from './components/Grid';
+import Grid from './Grid';
 import { TICK_INTERVAL } from './config';
 import { emptyGrid, toggleCell, updateGrid } from './utils';
 
@@ -26,12 +26,14 @@ const App = () => {
     <main>
       <h1>Conway's Game of Life</h1>
       <Grid grid={grid} onToggleCell={!started ? onToggleCell : undefined} />
-      <br />
-      <div>
+      <div id="bottom">
         <button onClick={() => setStarted(!started)}>
           {started ? 'Stop' : 'Start'}
         </button>
-        <span>Tick: {tick}</span>
+        <span>
+          <strong>Tick: </strong>
+          {tick}
+        </span>
       </div>
     </main>
   );
