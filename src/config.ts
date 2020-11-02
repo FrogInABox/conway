@@ -1,4 +1,4 @@
 export const GRID_ROWS = 100;
 export const GRID_COLS = 100;
 
-export const TICK_INTERVAL = 1000; // ms
+export const TICK_INTERVAL = 200; // ms
