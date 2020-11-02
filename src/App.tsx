@@ -31,8 +31,7 @@ const App = () => {
           {started ? 'Stop' : 'Start'}
         </button>
         <span>
-          <strong>Tick: </strong>
-          {tick}
+          <strong>Tick: {tick}</strong>
         </span>
       </div>
     </main>
